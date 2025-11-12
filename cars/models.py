@@ -1,20 +1,17 @@
-from django.db import models
-
-# Source - https://stackoverflow.com/a
-# Posted by M-Jamiri
-# Retrieved 2025-11-11, License - CC BY-SA 4.0
 import os
+from django.db import models
 from uuid import uuid4
 
+
 def path_and_rename(instance, filename):
-    upload_to = 'cars/'
-    ext = filename.split('.')[-1]
+    upload_to = "cars/"
+    ext = filename.split(".")[-1]
     # get filename
     if instance.pk:
-        filename = '{}.{}'.format(instance.pk, ext)
+        filename = "{}.{}".format(instance.pk, ext)
     else:
         # set filename as random string
-        filename = '{}.{}'.format(uuid4().hex, ext)
+        filename = "{}.{}".format(uuid4().hex, ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
@@ -26,10 +23,13 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+
 class Car(models.Model):
     id = models.AutoField(primary_key=True)
     model = models.CharField(max_length=200)
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='cars_brand')
+    brand = models.ForeignKey(
+        Brand, on_delete=models.PROTECT, related_name="cars_brand"
+    )
     factory_year = models.IntegerField(blank=True, null=True)
     model_year = models.IntegerField(blank=True, null=True)
     plate = models.CharField(max_length=10, blank=True, null=True)
@@ -38,4 +38,3 @@ class Car(models.Model):
 
     def __str__(self):
         return self.model
-

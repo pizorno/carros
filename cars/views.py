@@ -1,8 +1,5 @@
 from django.shortcuts import render
 
+
 def cars_view(request):
-    return render(
-        request,
-        'cars.html',
-        {'cars': {'model': 'Gol 2.0'}}
-    )
+    return render(request, "cars.html", {"cars": {"model": "Gol 2.0"}})
