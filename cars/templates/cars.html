@@ -8,7 +8,11 @@
 {% block content %}
     <body>
         <h3>Página de Carros</h3>
-        <p>Modelo do carro: {{ cars.model }}</p>
+        {% for car in cars %}
+            <p>Modelo do carro: {{ car.model }}</p>
+            <img src={{ car.photo.url }} width="200"/>
+            <p>Valor R$ {{ car.value }}</p>
+        {% endfor %}
     </body>
 {% endblock %}
 </html>
