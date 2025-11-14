@@ -23,3 +23,17 @@ class CarForm(forms.Form):
         car.save()
         return car
        
+class CarModelForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = '__all__'
+        #fields = ['model', 'brand', 'factory_year', 'model_year', 'plate', 'value', 'photo']
+        labels = {
+            'model': 'Modelo',
+            'brand': 'Marca',
+            'factory_year': 'Ano Fábricação',
+            'model_year': 'Ano Modelo',
+            'plate': 'Placa',
+            'value': 'Valor',
+            'photo': 'Imagem',
+        }
