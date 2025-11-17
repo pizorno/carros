@@ -90,14 +90,15 @@
     button[type="submit"]:hover {
         background-color: #108eb8;
     }
+    
   </style>
 
   <form method="GET" action="{% url 'cars_list' %}">
     <input type="text" name="search" placeholder="Buscar carro...">
     <button type="submit">Buscar</button>
   </form>
-
   <div class="car-grid">
+    
     {% if cars %}
       {% for car in cars %}
         <div class="car-card">
