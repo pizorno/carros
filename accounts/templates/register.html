@@ -4,7 +4,22 @@
   <h2>Adicionar usuário</h2>
   <form method="post">
     {% csrf_token %}
-    {{ user_form.as_p }}
+    <div class="Form-group">
+        {{ user_form.username.errors }}
+        <label for="username">Usuário:</label>
+        {{ user_form.username }}
+    </div>
+    <div class="Form-group">
+        {{ user_form.password1.errors }}
+        <label for="password">Senha:</label>
+        {{ user_form.password1 }}
+    </div>
+    <div class="Form-group">
+        {{ user_form.password2.errors }}
+        <label for="password">Confirmação de senha:</label>
+        {{ user_form.password2 }}
+    </div>
+    
     <button type="submit">Adicionar</button>
   </form>
 {% endblock %}
