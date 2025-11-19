@@ -1,7 +1,13 @@
 from django.urls import reverse_lazy
 from cars.models import Car
 from cars.forms import CarModelForm
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -27,20 +33,20 @@ class NewCarCreateView(LoginRequiredMixin, CreateView):
 
 class CarDetailView(DetailView):
     model = Car
-    template_name = 'car_detail.html'
+    template_name = "car_detail.html"
 
 
 class CarUpdateView(LoginRequiredMixin, UpdateView):
     model = Car
     form_class = CarModelForm
-    template_name = 'car_update.html'
+    template_name = "car_update.html"
 
     def get_success_url(self):
         # return f'/car/{self.object.pk}/update/'
-        return reverse_lazy('car_update', kwargs={'pk': self.object.pk})
+        return reverse_lazy("car_update", kwargs={"pk": self.object.pk})
 
 
 class CarDeleteView(LoginRequiredMixin, DeleteView):
     model = Car
-    template_name = 'car_delete.html'
-    success_url = '/cars/'
+    template_name = "car_delete.html"
+    success_url = "/cars/"
